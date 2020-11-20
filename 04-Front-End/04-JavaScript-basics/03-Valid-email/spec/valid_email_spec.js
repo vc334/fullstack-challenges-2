@@ -30,3 +30,11 @@ describe("valid", () => {
     assert.equal(valid('b.papillard75@caramail.fr'), true);
   });
 });
+
+
+boris.lewagon.org
+boris@lewagon.o
+@lewagon.org
+boris@lewagon
+boris@lewagon.org
+b.papillard75@caramail.fr
