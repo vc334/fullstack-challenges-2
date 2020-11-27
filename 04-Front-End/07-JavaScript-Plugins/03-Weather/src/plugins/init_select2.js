@@ -6,7 +6,7 @@ const cities = ["Amsterdam", "Bali", "Barcelona", "Belo Horizonte", "Berlin", "B
 const initSelect2 = () => {
   $('.select2').select2({
     data: cities,
-    width: '100%'
+    width: '250px'
   });
 };
 

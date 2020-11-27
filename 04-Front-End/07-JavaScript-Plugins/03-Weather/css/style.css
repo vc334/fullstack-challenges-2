@@ -4,8 +4,14 @@
 }
 
 .main-card {
-  width: 600px;
+  width: 750px;
   margin: 24px auto;
   border: 1px grey solid;
   padding: 16px 8px;
+}
+
+#icon, #degrees {
+  display: inline;
+  margin: 0px;
+  padding: 0px;
 }

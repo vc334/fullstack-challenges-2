@@ -2,7 +2,6 @@
 import { initSelect2 } from '../src/plugins/init_select2';
 
 const displayWeather = (locationAndUrl) => {
-
   const cityParagraph = document.getElementById('city-paragraph');
   const degreesParagraph = document.getElementById("degrees");
   const degreesIconParagraph = document.getElementById('icon');
@@ -16,8 +15,15 @@ const displayWeather = (locationAndUrl) => {
     .then((data) => {
       const degreesUrl = `<img src="http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png">`;
       degreesIconParagraph.insertAdjacentHTML('afterbegin', degreesUrl);
-      degreesParagraph.innerText = Math.round(data.main.temp);
-      descriptionParagraph.innerText = data.weather[0].description
+      degreesParagraph.innerText = `${Math.round(data.main.temp)}°`;
+      descriptionParagraph.innerText = data.weather[0].description;
+      const date = document.getElementById("date");
+      const today = new Date();
+      const localOffset = data.timezone + today.getTimezoneOffset() * 60;
+      const localDate = new Date(today.setUTCSeconds(localOffset));
+      const options = { weekday: 'long', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric' };
+      const formattedDate = localDate.toLocaleDateString("en-US", options);
+      date.innerText = `${formattedDate} local time`;
   });
 
 };
@@ -26,11 +32,13 @@ const getCurrentLocation = (e) => {
   e.preventDefault();
   navigator.geolocation.getCurrentPosition((data) => {
   const lat = data.coords.latitude;
+  console.log(lat);
   const lon = data.coords.longitude;
-  const displayableLocation = `${lat}, ${lon}`
+  const displayableLocation = `${lat}, ${lon}`;
   const getCurrentLocationUrl = `http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=35298746992ee2d96956bb13aa5307ee&units=imperial`;
   const locationAndUrl = {"displayableLocation": displayableLocation, "url": getCurrentLocationUrl};
-  displayWeather(locationAndUrl)
+  console.log(locationAndUrl);
+  displayWeather(locationAndUrl);
 
 });
 };
