@@ -2,3 +2,10 @@
 .header {
   display: flex;
 }
+
+.main-card {
+  width: 600px;
+  margin: 24px auto;
+  border: 1px grey solid;
+  padding: 16px 8px;
+}
